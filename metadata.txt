@@ -3,14 +3,14 @@
 # This file should be included when you package your plugin.# Mandatory items:
 
 [general]
-name=JMA Nowcast Tiletool
+name=NowcastTool
 qgisMinimumVersion=3.0
-description=Tiletool for weather forecast tiles by Japan Meteorological Agency
+description=Tool for Nowcast tiles, load tiles, create weather map animation.
 version=1.0
 author=Kanahiro Iguchi
 email=kanahiro.iguchi@gmail.com
 
-about=Tiletool for weather forecast tiles by Japan Meteorological Agency
+about=Tool for Nowcast tiles, load tiles, create weather map animation.
 
 tracker=http://bugs
 repository=http://repo
@@ -23,7 +23,7 @@ hasProcessingProvider=no
 # changelog=
 
 # Tags are comma separated with spaces allowed
-tags=python, japan, weather, tile
+tags=python, japan, weather, tile, animation
 
 homepage=http://homepage
 category=Web

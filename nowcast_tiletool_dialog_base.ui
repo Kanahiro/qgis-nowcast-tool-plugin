@@ -1,6 +1,6 @@
 <ui version="4.0" >
- <class>NowcastTiletoolDialogBase</class>
- <widget class="QDialog" name="NowcastTiletoolDialogBase" >
+ <class>NowcastToolDialogBase</class>
+ <widget class="QDialog" name="NowcastToolDialogBase" >
   <property name="geometry" >
    <rect>
     <x>0</x>
@@ -34,7 +34,7 @@
   <connection>
    <sender>button_box</sender>
    <signal>accepted()</signal>
-   <receiver>NowcastTiletoolDialogBase</receiver>
+   <receiver>NowcastToolDialogBase</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="source_label" >
@@ -50,7 +50,7 @@
   <connection>
    <sender>button_box</sender>
    <signal>rejected()</signal>
-   <receiver>NowcastTiletoolDialogBase</receiver>
+   <receiver>NowcastToolDialogBase</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="source_label" >
