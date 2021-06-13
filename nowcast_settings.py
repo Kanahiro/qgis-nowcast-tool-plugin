@@ -10,8 +10,9 @@ class SettingsManager:
 
     def __init__(self):
         self.__settings = {
-            'duration': 120,
+            'duration': 180,
         }
+
         self.load_settings()
 
     def load_setting(self, key):

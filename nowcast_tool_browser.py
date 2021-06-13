@@ -70,8 +70,6 @@ def make_raster_layer(tiledata, animation=False):
         with tempfile.TemporaryDirectory() as temp_dir:
             temp_qml = os.path.join(temp_dir, 'temp.qml')
             with open(temp_qml, mode='w') as f:
-                print(qml_string.replace(r'{START_DATETIME}', start_datetime.strftime(
-                    r'%Y-%m-%dT%H:%M:%SZ')).replace(r'{END_DATETIME}', end_datetime.strftime(r'%Y-%m-%dT%H:%M:%SZ')))
                 f.write(qml_string.replace(r'{START_DATETIME}', start_datetime.strftime(
                     r'%Y-%m-%dT%H:%M:%SZ')).replace(r'{END_DATETIME}', end_datetime.strftime(r'%Y-%m-%dT%H:%M:%SZ')))
             rlayer.loadNamedStyle(temp_qml)
@@ -100,6 +98,9 @@ class RootCollection(QgsDataCollectionItem):
     def __init__(self):
         QgsDataCollectionItem.__init__(
             self, None, "NowcastTool", "/NowcastTool")
+
+        self.setIcon(QIcon(os.path.join(os.path.dirname(
+            os.path.realpath(__file__)), "icon.png")))
 
         self.past_tiledata_list = []
         self.forecast_tiledata_list = []
@@ -143,7 +144,7 @@ class RootCollection(QgsDataCollectionItem):
         return actions
 
     def open_config(self):
-        self.__config_dialog = NowcastToolConfigDialog()
+        self.__config_dialog = NowcastToolConfigDialog(callback=self.reload)
         self.__config_dialog.show()
 
     def add_all_as_animation_action(self):

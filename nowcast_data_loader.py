@@ -68,9 +68,9 @@ class NowcastDataLoader:
             }
 
         settings = SettingsManager()
-        duration = settings.get_setting('duration')
+        extend_duration = int(settings.get_setting('duration')) - 180
         extended_tiledata_list = [make_tiledata(
-            oldest_datetime - timedelta(minutes=(duration - i) * 5)) for i in range(1, duration)]
+            oldest_datetime - timedelta(minutes=(extend_duration - i * 5))) for i in range(0, extend_duration // 5)]
         return extended_tiledata_list
 
     @ staticmethod

@@ -6,14 +6,14 @@
 name=NowcastTool
 qgisMinimumVersion=3.0
 description=Tool for Nowcast tiles, load tiles, create weather map animation.
-version=1.0
+version=1.0.0
 author=Kanahiro Iguchi
 email=kanahiro.iguchi@gmail.com
 
 about=Tool for Nowcast tiles, load tiles, create weather map animation.
 
-tracker=http://bugs
-repository=http://repo
+tracker=https://github.com/Kanahiro/qgis-nowcast-tool-plugin/issues
+repository=https://github.com/Kanahiro/qgis-nowcast-tool-plugin
 # End of mandatory metadata
 
 # Recommended items:
@@ -25,7 +25,7 @@ hasProcessingProvider=no
 # Tags are comma separated with spaces allowed
 tags=python, japan, weather, tile, animation
 
-homepage=http://homepage
+homepage=https://github.com/Kanahiro/qgis-nowcast-tool-plugin
 category=Web
 icon=icon.png
 # experimental flag
