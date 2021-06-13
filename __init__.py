@@ -32,5 +32,5 @@ def classFactory(iface):  # pylint: disable=invalid-name
     :type iface: QgsInterface
     """
     #
-    from .nowcast_tiletool import NowcastTool
+    from .nowcast_tool import NowcastTool
     return NowcastTool(iface)

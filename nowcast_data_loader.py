@@ -5,6 +5,8 @@ from PyQt5.QtNetwork import QNetworkRequest, QNetworkReply
 from PyQt5.QtCore import QUrl, QEventLoop, QTextStream
 from qgis.core import QgsNetworkAccessManager
 
+from .nowcast_settings import SettingsManager
+
 
 class NowcastDataLoader:
     def __init__(self):
@@ -27,8 +29,10 @@ class NowcastDataLoader:
         reply2.finished.connect(self.gotReplyFromN2)
         self.eventLoop.exec_()
 
-        past_timedata_list = self.jsonify(reply1)
-        forecast_timedata_list = self.jsonify(reply2)
+        past_timedata_list = self.jsonify(
+            reply1) if reply1.error() == QNetworkReply.NoError else []
+        forecast_timedata_list = self.jsonify(
+            reply2) if reply2.error() == QNetworkReply.NoError else []
 
         past_tiledata_list = list(
             map(self.get_tiledata_from, past_timedata_list))
@@ -62,9 +66,11 @@ class NowcastDataLoader:
                 'url': f'https://www.jma.go.jp/bosai/jmatile/data/nowc/{yyyymmddhhmmss}/none/{yyyymmddhhmmss}/surf/hrpns/' + r'{z}/{x}/{y}.png'
 
             }
-        extend_counter = 120
+
+        settings = SettingsManager()
+        duration = settings.get_setting('duration')
         extended_tiledata_list = [make_tiledata(
-            oldest_datetime - timedelta(minutes=(extend_counter - i) * 5)) for i in range(1, extend_counter)]
+            oldest_datetime - timedelta(minutes=(duration - i) * 5)) for i in range(1, duration)]
         return extended_tiledata_list
 
     @ staticmethod

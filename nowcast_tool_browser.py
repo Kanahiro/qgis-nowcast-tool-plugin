@@ -6,8 +6,10 @@ from qgis.PyQt.QtWidgets import QAction
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction
 from qgis.core import *
+from qgis.utils import iface
 
 from .nowcast_data_loader import NowcastDataLoader
+from .nowcast_tool_config_dialog import NowcastToolConfigDialog
 
 # The following long string is to activate temporal controller settings of QgsRasterLayer,
 # Over-writing props in QgsMapLayerTemporalProperties doesn't work correctly.
@@ -101,6 +103,7 @@ class RootCollection(QgsDataCollectionItem):
 
         self.past_tiledata_list = []
         self.forecast_tiledata_list = []
+        self.__config_dialog = None
 
         self.reload()
 
@@ -118,6 +121,9 @@ class RootCollection(QgsDataCollectionItem):
         self.past_tiledata_list, self.forecast_tiledata_list = loader.fetch_nowcast_timedata()
         self.refreshConnections()
 
+        if len(self.past_tiledata_list + self.forecast_tiledata_list) == 0:
+            iface.messageBar().pushWarning('NowcastTool', 'タイル情報の取得に失敗しました')
+
     def actions(self, parent):
         actions = []
 
@@ -131,10 +137,14 @@ class RootCollection(QgsDataCollectionItem):
         actions.append(add_all_as_animation_action)
 
         config_action = QAction(QIcon(), '設定', parent)
-        config_action.triggered.connect(lambda: print('a'))
+        config_action.triggered.connect(self.open_config)
         actions.append(config_action)
 
         return actions
+
+    def open_config(self):
+        self.__config_dialog = NowcastToolConfigDialog()
+        self.__config_dialog.show()
 
     def add_all_as_animation_action(self):
         root = QgsProject().instance().layerTreeRoot()

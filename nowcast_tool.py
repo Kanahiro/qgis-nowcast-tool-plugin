@@ -27,10 +27,10 @@ from qgis.PyQt.QtWidgets import QAction
 from qgis.core import QgsApplication
 
 # Import the code for the dialog
-from .nowcast_tiletool_dialog import NowcastToolDialog
+from .nowcast_tool_config_dialog import NowcastToolConfigDialog
 import os.path
 
-from .browser_item import DataItemProvider
+from .nowcast_tool_browser import DataItemProvider
 
 
 class NowcastTool:
