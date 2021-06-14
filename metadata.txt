@@ -6,7 +6,7 @@
 name=NowcastTool
 qgisMinimumVersion=3.0
 description=Tool for Nowcast tiles, load tiles, create weather map animation.
-version=1.0.0
+version=1.0.1
 author=Kanahiro Iguchi
 email=kanahiro.iguchi@gmail.com
 
